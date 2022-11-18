@@ -5,14 +5,14 @@ class Ball:
     def __init__(self,window):
 
         self.ball = pygame.image.load("ball.png")
-        self.ball = pygame.transform.scale(self.ball,(20,20))
+        self.ball = pygame.transform.scale(self.ball,(15,15))
         # self.rect_boundry = self.ball.get_rect()
         self.rect_boundry = pygame.draw.rect(window, "black", pygame.Rect(0, 200, 20, 20))
-        self.speed=[5,5]
+        self.speed=[8,8]
 
         self.ball_is_moving = True
 
-    def move_ball(self,window):
+    def move_ball(self,window,paddle):
         self.rect_boundry = self.rect_boundry.move(self.speed)
 
         if self.rect_boundry.left < 0 or self.rect_boundry.right>1200:
@@ -23,27 +23,53 @@ class Ball:
         window.blit(self.ball,self.rect_boundry)
         pygame.display.update()
         window.fill("black", self.rect_boundry)
+        window.fill("red", paddle)
 
     def check_paddle_collision(self,window,paddle,block_list):
         paddle_xposition = self.rect_boundry.centerx
         ball_xposition = paddle.centerx
         difference = paddle_xposition - ball_xposition
         collision = pygame.Rect.colliderect(self.rect_boundry,paddle)
+        ydifference = self.rect_boundry.bottom - paddle.top
 
 
-        if collision:
-            if difference < 40 and difference > -40:
-                print(paddle_xposition,ball_xposition)
+        if collision and ydifference < 10:
+
+            if difference < 15 and difference >= -15:
                 self.speed[0] = 0
-                self.speed[1] = -self.speed[1]
+                self.speed[1] = -16
                 window.fill("red",paddle)
-            elif difference < 40:
-                self.speed[0] = -10
-                self.speed[1] = -self.speed[1]
+            elif difference > 15 and difference <= 30:
+                self.speed[0] = 2
+                self.speed[1] = -14
                 window.fill("red", paddle)
-            elif difference > 40:
+            elif difference < -15 and difference >= -30:
+                self.speed[0]=-2
+                self.speed[1]=-14
+                window.fill("red", paddle)
+            elif difference > 30 and difference <= 45:
+                self.speed[0] = 4
+                self.speed[1] = -12
+                window.fill("red", paddle)
+            elif difference < -30 and difference >= -45:
+                self.speed[0]=-4
+                self.speed[1]=-12
+                window.fill("red", paddle)
+            elif difference > 45 and difference <= 60:
+                self.speed[0] = 6
+                self.speed[1] = -10
+                window.fill("red", paddle)
+            elif difference < -45 and difference >= -60:
+                self.speed[0]=-6
+                self.speed[1]=-10
+                window.fill("red", paddle)
+            elif difference < 60:
+                self.speed[0] = -10
+                self.speed[1] = -6
+                window.fill("red", paddle)
+            elif difference > 60:
                 self.speed[0]=10
-                self.speed[1]=-self.speed[1]
+                self.speed[1]=-6
                 window.fill("red", paddle)
 
 
@@ -65,6 +91,8 @@ class Ball:
             self.speed = [5, 5]
             time.sleep(1)
             self.rect_boundry = pygame.draw.rect(window, "black", pygame.Rect(0, 200, 20, 20))
+
+            return True
 
 
 
