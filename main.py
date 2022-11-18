@@ -9,6 +9,7 @@ from ball import Ball
 from blocks import Blocks
 
 
+
 level = 1
 lives = 3
 

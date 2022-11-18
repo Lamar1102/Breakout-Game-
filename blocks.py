@@ -130,3 +130,9 @@ class Blocks:
         return cleared
 
 
+
+    def move_block(self,window):
+        window.fill("black",self.block)
+        self.block = pygame.draw.rect(window, "white", pygame.Rect(-200, -200, 75, 15))
+        pygame.display.update(self.block)
+

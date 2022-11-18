@@ -34,41 +34,58 @@ class Ball:
 
 
         if collision and ydifference < 10:
+            print(difference)
 
-            if difference < 15 and difference >= -15:
+            if difference < 10 and difference >= -10:
                 self.speed[0] = 0
                 self.speed[1] = -16
                 window.fill("red",paddle)
-            elif difference > 15 and difference <= 30:
-                self.speed[0] = 2
-                self.speed[1] = -14
+            elif difference > 10 and difference <= 20:
+                self.speed[0] = 1
+                self.speed[1] = -15
                 window.fill("red", paddle)
-            elif difference < -15 and difference >= -30:
-                self.speed[0]=-2
-                self.speed[1]=-14
+            elif difference < -10 and difference >= -20:
+                self.speed[0]=-1
+                self.speed[1]=-15
                 window.fill("red", paddle)
-            elif difference > 30 and difference <= 45:
-                self.speed[0] = 4
-                self.speed[1] = -12
+            elif difference > 20 and difference <= 30:
+                self.speed[0] = 3
+                self.speed[1] = -13
                 window.fill("red", paddle)
-            elif difference < -30 and difference >= -45:
-                self.speed[0]=-4
-                self.speed[1]=-12
+            elif difference < -20 and difference >= -30:
+                self.speed[0]=-3
+                self.speed[1]=-13
                 window.fill("red", paddle)
-            elif difference > 45 and difference <= 60:
+            elif difference > 30 and difference <= 40:
                 self.speed[0] = 6
                 self.speed[1] = -10
                 window.fill("red", paddle)
-            elif difference < -45 and difference >= -60:
+            elif difference < -30 and difference >= -40:
                 self.speed[0]=-6
                 self.speed[1]=-10
                 window.fill("red", paddle)
+            elif difference > 40 and difference <= 50:
+                self.speed[0] = 8
+                self.speed[1] = -8
+                window.fill("red", paddle)
+            elif difference < -40 and difference >= -50:
+                self.speed[0]=-8
+                self.speed[1]=-8
+                window.fill("red", paddle)
+            elif difference > 50 and difference <= 60:
+                self.speed[0] = 10
+                self.speed[1] = -6
+                window.fill("red", paddle)
+            elif difference < -50 and difference >= -60:
+                self.speed[0]=-10
+                self.speed[1]=-6
+                window.fill("red", paddle)
             elif difference < 60:
-                self.speed[0] = -10
+                self.speed[0] = -12
                 self.speed[1] = -6
                 window.fill("red", paddle)
             elif difference > 60:
-                self.speed[0]=10
+                self.speed[0]=12
                 self.speed[1]=-6
                 window.fill("red", paddle)
 
@@ -88,11 +105,19 @@ class Ball:
 
     def restart_ball(self,window):
         if self.rect_boundry.top > 800:
+
             self.speed = [5, 5]
             time.sleep(1)
             self.rect_boundry = pygame.draw.rect(window, "black", pygame.Rect(0, 200, 20, 20))
 
             return True
+
+            time.sleep(1)
+            self.rect_boundry = pygame.draw.rect(window, "black", pygame.Rect(0, 200, 20, 20))
+
+
+
+
 
 
 
